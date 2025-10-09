@@ -2,12 +2,36 @@ project:
   name: hrms
 
 gateway_service:
-  enabled: false
+  enabled: true
   namespace: istio-gateway
   name: auth-gateway
   hostname: "hrms.anasolconsultancyservices.com"
   isthio_injection: "disable"
-
+  listeners:
+    - name: hrms-http-listener
+      hostname: "hrms.anasolconsultancyservices.com"
+      port: 80
+      protocol: HTTP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: hrms-https-listener
+      hostname: "hrms.anasolconsultancyservices.com"
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - kind: Secret
+            name: cirtificate-hrms-secret
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: hrms-tcp-listener
+      port: 5432
+      protocol: TCP
+      allowedRoutes:
+        namespaces:
+          from: All
 certificate:
   enabled: false
   name: certificate-hrms
