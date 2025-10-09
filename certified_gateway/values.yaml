@@ -26,7 +26,13 @@ gateway_service:
       allowedRoutes:
         namespaces:
           from: All
-    - name: hrms-tcp-listener
+    - name: postgress-listener
+      port: 5432
+      protocol: TCP
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: redis-listener
       port: 5432
       protocol: TCP
       allowedRoutes:
