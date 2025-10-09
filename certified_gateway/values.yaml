@@ -33,7 +33,7 @@ gateway_service:
         namespaces:
           from: All
     - name: redis-listener
-      port: 5432
+      port: 6378
       protocol: TCP
       allowedRoutes:
         namespaces:
