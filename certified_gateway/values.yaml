@@ -4,7 +4,7 @@ project:
 gateway_service:
   enabled: true
   namespace: istio-gateway
-  name: auth-gateway
+  name: gateway
   hostname: "hrms.anasolconsultancyservices.com"
   isthio_injection: "disable"
   listeners:
