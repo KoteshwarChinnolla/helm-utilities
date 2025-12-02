@@ -17,6 +17,22 @@ spec:
         app: {{ .Values.microservice.name }}
     spec:
       serviceAccountName: {{ .Values.microservice.name }}-service-account
+      tolerations:
+{{- if .Values.tolerations }}
+{{- range .Values.tolerations }}
+        - key: "{{ .key }}"
+          operator: "{{ .operator | default "Equal" }}"
+          value: "{{ .value }}"
+          effect: "{{ .effect | default "NoSchedule" }}"
+{{- end }}
+{{- end }}
+      nodeSelector:
+{{- if .Values.nodeSelector }}
+{{- range $key, $value := .Values.nodeSelector }}
+            {{ $key }}: "{{ $value }}"
+{{- end }}
+{{- end }}
+
       containers:
         - name: {{ .Values.microservice.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
