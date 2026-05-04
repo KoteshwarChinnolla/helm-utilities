@@ -51,6 +51,15 @@
 #     key: aws-secret-key
 
 
+# tolerations:
+#   - key: "dedicated"
+#     value: "special"
+#     effect: "NoSchedule"
+
+# nodeSelector:
+#   dedicated: "special"
+
+
 # resources:
 #   limits:
 #     cpu: 1000m
